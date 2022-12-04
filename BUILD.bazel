@@ -28,6 +28,15 @@ latex_toolchain(
 )
 
 latex_toolchain(
+    name = "latex_toolchain_aarch64-linux",
+    exec_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
+    platform = "aarch64-linux",
+)
+
+latex_toolchain(
     name = "latex_toolchain_x86_64-darwin",
     exec_compatible_with = [
         "@platforms//cpu:x86_64",

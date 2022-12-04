@@ -5,7 +5,6 @@ Definitions related to a LaTeX toolchain
 LatexInfo = provider(
     doc = "Information about how to invoke the latex compiler",
     fields = [
-        "biber",
         "bibtex",
         "gsftopk",
         "kpsewhich",
@@ -18,7 +17,6 @@ def _latex_toolchain_info_impl(ctx):
     return [
         platform_common.ToolchainInfo(
             latexinfo = LatexInfo(
-                biber = ctx.attr.biber,
                 bibtex = ctx.attr.bibtex,
                 gsftopk = ctx.attr.gsftopk,
                 kpsewhich = ctx.attr.kpsewhich,
@@ -30,11 +28,6 @@ def _latex_toolchain_info_impl(ctx):
 
 _latex_toolchain_info = rule(
     attrs = {
-        "biber": attr.label(
-            allow_single_file = True,
-            cfg = "exec",
-            executable = True,
-        ),
         "bibtex": attr.label(
             allow_single_file = True,
             cfg = "exec",
@@ -77,7 +70,6 @@ def latex_toolchain(platform, exec_compatible_with, name = None):
 
     _latex_toolchain_info(
         name = "%s_info" % _toolchain_name,
-        biber = "@texlive_bin__%s//:biber" % platform,
         bibtex = "@texlive_bin__%s//:bibtex" % platform,
         gsftopk = "@texlive_bin__%s//:gsftopk" % platform,
         kpsewhich = "@texlive_bin__%s//:kpsewhich" % platform,

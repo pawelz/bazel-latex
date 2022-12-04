@@ -33,7 +33,6 @@ def _latex_impl(ctx):
         use_default_shell_env = True,
         executable = ctx.executable._tool,
         arguments = [
-            "--dep-tool=" + toolchain.biber.files.to_list()[0].path,
             "--dep-tool=" + toolchain.bibtex.files.to_list()[0].path,
             "--dep-tool=" + toolchain.gsftopk.files.to_list()[0].path,
             "--dep-tool=" + toolchain.kpsewhich.files.to_list()[0].path,
@@ -51,7 +50,6 @@ def _latex_impl(ctx):
         inputs = depset(
             direct = ctx.files.main + ctx.files.srcs + ctx.files._latexrun,
             transitive = [
-                toolchain.biber.files,
                 toolchain.bibtex.files,
                 toolchain.gsftopk.files,
                 toolchain.kpsewhich.files,

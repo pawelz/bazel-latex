@@ -6606,7 +6606,6 @@ def latex_repositories(name = None):
             build_file_content = """
 exports_files(
     [
-        "biber",
         "bibtex",
         "kpsewhich",
         "gsftopk",
@@ -6672,6 +6671,7 @@ filegroup(
 
     native.register_toolchains(
         "@bazel_latex//:latex_toolchain_aarch64-darwin",
+        "@bazel_latex//:latex_toolchain_aarch64-linux",
         "@bazel_latex//:latex_toolchain_amd64-freebsd",
         "@bazel_latex//:latex_toolchain_x86_64-darwin",
         "@bazel_latex//:latex_toolchain_x86_64-linux",
